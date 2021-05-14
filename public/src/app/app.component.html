@@ -1,0 +1,19 @@
+<h1>{{ title }}</h1>
+
+<ul>
+  <h1>Restful Tasks Api</h1>
+  <button (click)= 'getTasks()'>Get Tasks</button>
+  <li *ngFor= 'let task of tasks'> {{task.title}} 
+    <button (click)= 'showTask(task)'>Show Task</button>
+    <button (click)= 'updateTask(task._id)'>Update Task</button>
+    <button (click)= 'deleteTask(task._id)'>Delete Task</button>
+  </li>
+</ul>
+
+<h3>Title: {{task.title}}</h3> 
+
+<h4>Description: {{task.description}} </h4>
+
+<button (click)= 'createTask()'> create task </button>
+
+<router-outlet></router-outlet>
