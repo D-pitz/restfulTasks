@@ -12,6 +12,7 @@ export class AppComponent {
   tasks:{title: string, description: string}[]
   task:{title: string, description: string}
   task_to_edit:{title: string, description: string}
+  task_to_show:boolean= false
   constructor(private _httpService: HttpService){
     this.task = {title: '', description: ''}
     this.task_to_edit = {title: '', description: ''}
@@ -31,6 +32,7 @@ export class AppComponent {
   showTask(task){
     this._httpService.showTask(task)
     .subscribe(data=>this.task = data)
+    this.task_to_show = true
   }
   editTask(task_to_edit){
     this.task_to_edit = task_to_edit

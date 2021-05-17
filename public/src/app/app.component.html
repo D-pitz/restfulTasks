@@ -1,29 +1,33 @@
-<h1>{{title}}</h1>
-<form (submit)='createTask()'>
-  <h3>Create New Task</h3>
-  <p>Title: <input type="text" name="title" [(ngModel)]= 'task.title'></p>
-  <p>Description: <input type="text" name="description" [(ngModel)]= 'task.description'></p>
-  <input type=submit value="Create Task">
-</form>
-<ul>
-  <h2>Restful Tasks Api</h2>
-  <button (click)= 'getTasks()'>Get Tasks</button>
-  <li *ngFor= 'let task of tasks'> Title: {{task.title}} 
-    <p>
-    <button (click)= 'showTask(task)'>Show Task</button>
-    <button (click)= 'deleteTask(task._id)'>Delete Task</button>
-    <button (click)= 'editTask(task)'>Edit Task</button>
-    </p>
-  </li>
-  <form (submit)='updateTask()'>
-    <p>Title: <input type="text" name="title" [(ngModel)]= 'task_to_edit.title'></p>
-    <p>Description: <input type="text" name="description" [(ngModel)]= 'task_to_edit.description'></p>
-    <input type= 'submit' value="Update Task">
-  </form>
-  <h3>Title: {{task.title}}</h3>
-  <h4>Description: {{task.description}} </h4>
-</ul>
-
+<div id="container">
+  <h1>{{title}}</h1>
+  <div id="form1">
+    <form (submit)='createTask()'>
+        <h3>Create New Task</h3>
+        <p>Title: <input type="text" name="title" [(ngModel)]= 'task.title'></p>
+        <p>Description: <input type="text" name="description" [(ngModel)]= 'task.description'></p>
+        <input type=submit value="Create Task">
+    </form>
+</div>
+  <ul>
+    <h2>Restful Tasks Api</h2>
+    <button (click)= 'getTasks()'>Get Tasks</button>
+    <li *ngFor= 'let task of tasks'> Title: {{task.title}} 
+      <div id="tasks">
+        <p>
+        <button (click)= 'showTask(task)'>Show Task</button>
+        <button (click)= 'deleteTask(task._id)'>Delete Task</button>
+        <button (click)= 'editTask(task)'>Edit Task</button>
+        </p>
+      </div>
+    </li>
+    <form (submit)='updateTask()'>
+      <p>Title: <input type="text" name="title" [(ngModel)]= 'task_to_edit.title'></p>
+      <p>Description: <input type="text" name="description" [(ngModel)]= 'task_to_edit.description'></p>
+      <input type= 'submit' value="Update Task">
+    </form>
+    <app-form *ngIf = 'task_to_show' [task]='task'></app-form>
+  </ul>
+</div>
 
 
 
