@@ -32,15 +32,13 @@ module.exports = {
             .catch(err=>{console.log(err); res.json(err)})
     },
 
-    // editOne: function(req,res){
-    //     Dog.findOne({_id: req.params.id})
-    //     .then(dog =>{
-    //         res.render('edit', {dog: dog})
-    //     })
-    //     .catch(err=>{
-    //         res.redirect(`dogs/${req.params.id}`)
-    //     })
-    // },
+    editOne: function(req,res){
+        Task.findOne({_id: req.params.id})
+        .then(data =>{
+            res.json(data)
+        })
+        .catch(err=>{console.log(err); res.json(err)})
+    },
 
     editOneProcess: function(req,res){
         Task.findOne({_id: req.params.id})

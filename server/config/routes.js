@@ -20,6 +20,10 @@ module.exports = function(app){
         Task.showOne(req,res)
     })
 
+    app.get('/edit/:id', (req,res)=>{
+        Task.editOne(req,res)
+    })
+
     app.put('/update/:id', (req,res)=>{
         Task.editOneProcess(req,res)
     })

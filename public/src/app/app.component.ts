@@ -8,19 +8,22 @@ import { HttpClient } from '@angular/common/http'
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Public'; 
-  tasks:any
-  task: any
+  title = 'Tasks'; 
+  tasks:{title: string, description: string}[]
+  task:{title: string, description: string}
+  task_to_edit:{title: string, description: string}
   constructor(private _httpService: HttpService){
-    this.task = {title: 'Select task!'}
+    this.task = {title: '', description: ''}
+    this.task_to_edit = {title: '', description: ''}
   }
   
   getTasks(){
+    this.task = {title: '', description: ''}
     this._httpService.getTasks()
     .subscribe(data=>this.tasks = data)
   }
   createTask(){
-    this._httpService.createTask({title:'clean room', description:'in the house', completed:false})
+    this._httpService.createTask(this.task)
     .subscribe(data=>{
     this.getTasks()  
     })
@@ -29,14 +32,19 @@ export class AppComponent {
     this._httpService.showTask(task)
     .subscribe(data=>this.task = data)
   }
-  updateTask(task){
-    this._httpService.updateTask({title:'cleaned', description: 'done', completed:true})
-    .subscribe(data=>this.task = data)
+  editTask(task_to_edit){
+    this.task_to_edit = task_to_edit
+  }
+  updateTask(){
+    this._httpService.updateTask(this.task_to_edit)
+    .subscribe(data=>{
+      this.getTasks()
+      this.task_to_edit = {title: '', description: ''}
+    })
   }
   deleteTask(task){
     this._httpService.deleteTask({_id: task})
     .subscribe(data=>{
-    this.task = data
     this.getTasks()
     })  
   }
